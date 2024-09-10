@@ -1,0 +1,27 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:rotationX="23">
+
+    <!-- Botón -->
+
+    <!-- TextView para mostrar el saludo -->
+
+    <Button
+        android:id="@+id/miBoton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Presióname" />
+
+    <TextView
+        android:id="@+id/miTexto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text=""
+        android:textSize="24sp" />
+
+</LinearLayout>
