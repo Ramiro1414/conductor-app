@@ -1,14 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:orientation="vertical"
-    android:rotationX="23">
-
-    <!-- Botón -->
-
-    <!-- TextView para mostrar el saludo -->
+    android:orientation="vertical">
 
     <Button
         android:id="@+id/miBoton"
@@ -23,5 +19,11 @@
         android:layout_marginTop="20dp"
         android:text=""
         android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/buttonGoToCRUD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Administrar Patentes" />
 
 </LinearLayout>
