@@ -3,27 +3,28 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#ECECEC"
     android:gravity="center"
     android:orientation="vertical">
-
-    <Button
-        android:id="@+id/miBoton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Presióname" />
-
-    <TextView
-        android:id="@+id/miTexto"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text=""
-        android:textSize="24sp" />
 
     <Button
         android:id="@+id/buttonGoToCRUD"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Administrar Patentes" />
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/button_background"
+        android:padding="12dp"
+        android:text="Administrar patentes"
+        android:textColor="#FFFFFF" />
+
+    <Button
+        android:id="@+id/buttonCoords"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/button_background"
+        android:padding="12dp"
+        android:text="Ubicacion actual"
+        android:textColor="#FFFFFF" />
 
 </LinearLayout>

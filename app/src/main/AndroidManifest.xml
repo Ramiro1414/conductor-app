@@ -11,15 +11,15 @@
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
+        android:logo="@drawable/logo"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MyApplication"
+        android:theme="@style/AppTheme"
         tools:targetApi="31">
 
-        <!-- Actividad principal -->
         <activity
-            android:name=".MainActivity"
+            android:name="com.example.conductor_app.frontend.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,15 +27,13 @@
             </intent-filter>
         </activity>
 
-        <!-- Nueva Actividad CRUD_patentes -->
         <activity
-            android:name=".CRUD_patentes"
+            android:name="com.example.conductor_app.frontend.CRUD_Patentes_Activity"
             android:exported="true" />
 
         <activity
-            android:name=".EditVehicleActivity"
+            android:name="com.example.conductor_app.frontend.EditPatenteActivity"
             android:exported="true" />
-
     </application>
 
 </manifest>
