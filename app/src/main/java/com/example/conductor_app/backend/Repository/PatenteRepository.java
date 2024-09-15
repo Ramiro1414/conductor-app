@@ -1,4 +1,4 @@
-package com.example.conductor_app.backend.controlador;
+package com.example.conductor_app.backend.Repository;
 
 import com.example.conductor_app.backend.modelo.Patente;
 

@@ -1,4 +1,4 @@
-package com.example.conductor_app.backend.controlador;
+package com.example.conductor_app.backend.Service;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -9,6 +9,7 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
+import com.example.conductor_app.backend.Repository.PatenteRepository;
 import com.example.conductor_app.backend.modelo.Patente;
 
 import java.util.ArrayList;

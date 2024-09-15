@@ -8,7 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.example.conductor_app.backend.controlador.PatenteService;
+import com.example.conductor_app.backend.Service.PatenteService;
 import com.example.conductor_app.backend.modelo.Patente;
 import com.example.myapplication.R;
 

@@ -9,7 +9,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.conductor_app.backend.controlador.PatenteService;
+import com.example.conductor_app.backend.Service.PatenteService;
 import com.example.conductor_app.backend.modelo.Patente;
 import com.example.myapplication.R;
 
