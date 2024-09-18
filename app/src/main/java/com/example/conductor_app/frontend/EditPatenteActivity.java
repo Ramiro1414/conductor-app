@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.conductor_app.backend.Service.PatenteRepetidaException;
 import com.example.conductor_app.backend.Service.PatenteService;
 import com.example.conductor_app.backend.modelo.Patente;
 import com.example.myapplication.R;
@@ -26,7 +27,7 @@ public class EditPatenteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_patente);
 
-        patenteService = new PatenteService(this, "myDB", null, 1);
+        patenteService = new PatenteService(this, "myDB");
         editTextPatente = findViewById(R.id.editTextEditPatente);
         textViewOldPatente = findViewById(R.id.textViewOldPatente); // Encuentra el TextView
         buttonSave = findViewById(R.id.buttonSavePatente);
@@ -48,15 +49,23 @@ public class EditPatenteActivity extends AppCompatActivity {
 
     private void savePatente() {
         String newPatenteText = editTextPatente.getText().toString().trim();
-        if (!newPatenteText.isEmpty()) {
-            Patente patente = new Patente();
-            patente.setId(patenteId);
-            patente.setCaracteres(newPatenteText);
-            patenteService.updateById(patenteId, patente);
-            Toast.makeText(this, "Patente actualizada", Toast.LENGTH_SHORT).show();
-            finish(); // Cierra la actividad y regresa a la anterior
-        } else {
+        if(newPatenteText.isEmpty()){
             Toast.makeText(this, "Ingrese un texto válido", Toast.LENGTH_SHORT).show();
+            return;
         }
+
+        Patente patente = new Patente();
+        patente.setId(patenteId);
+        patente.setCaracteres(newPatenteText);
+
+        try{
+            patenteService.updateById(patente);
+        } catch (PatenteRepetidaException e){
+            Toast.makeText(this, "La patente ya existe", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        Toast.makeText(this, "Patente actualizada", Toast.LENGTH_SHORT).show();
+        finish(); // Cierra la actividad y regresa a la anterior
     }
 }

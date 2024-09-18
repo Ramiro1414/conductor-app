@@ -1,5 +1,6 @@
 package com.example.conductor_app.backend.Repository;
 
+import com.example.conductor_app.backend.Service.PatenteRepetidaException;
 import com.example.conductor_app.backend.modelo.Patente;
 
 import java.util.List;
@@ -12,11 +13,11 @@ public interface PatenteRepository {
 
     Patente findByCaracteres(String caracteres);
 
-    void save(Patente patente);
+    void save(Patente patente) throws PatenteRepetidaException;
 
     void deleteById(int  id);
 
-    void updateById(int id, Patente patente);
+    void updateById(Patente patente) throws PatenteRepetidaException;
 
 
 }

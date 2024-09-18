@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.conductor_app.backend.Service.PatenteRepetidaException;
 import com.example.conductor_app.backend.Service.PatenteService;
 import com.example.conductor_app.backend.modelo.Patente;
 import com.example.myapplication.R;
@@ -28,7 +29,7 @@ public class CRUD_Patentes_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.crud_patentes_layout);
 
-        patenteService = new PatenteService(this, "myDB", null, 1);
+        patenteService = new PatenteService(this, "myDB");
         editTextNewPatente = findViewById(R.id.editTextNewPatente);
         Button buttonAddPatente = findViewById(R.id.buttonAddPatente);
         listViewPatentes = findViewById(R.id.listViewPatentes);
@@ -61,7 +62,13 @@ public class CRUD_Patentes_Activity extends AppCompatActivity {
         if (!patenteTexto.isEmpty()) {
             Patente patente = new Patente();
             patente.setCaracteres(patenteTexto);
-            patenteService.save(patente);
+
+            try{
+                patenteService.save(patente);
+            } catch (PatenteRepetidaException e){
+                Toast.makeText(this, "La patente ya existe", Toast.LENGTH_SHORT).show();
+            }
+
             editTextNewPatente.setText("");
             actualizarListaDePatentes();
             Toast.makeText(this, "Patente agregada", Toast.LENGTH_SHORT).show();

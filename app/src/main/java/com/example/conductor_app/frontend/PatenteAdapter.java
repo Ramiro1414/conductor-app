@@ -22,7 +22,7 @@ public class PatenteAdapter extends ArrayAdapter<Patente> {
     public PatenteAdapter(Context context, List<Patente> patentes) {
         super(context, 0, patentes);
         this.context = context;
-        this.patenteService = new PatenteService(context, "myDB", null, 1);
+        this.patenteService = new PatenteService(context, "myDB");
     }
 
     @Override
