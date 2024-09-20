@@ -27,7 +27,7 @@ public class EditPatenteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_patente);
 
-        patenteService = new PatenteService(this, "myDB");
+        patenteService = new PatenteService(this);
         editTextPatente = findViewById(R.id.editTextEditPatente);
         textViewOldPatente = findViewById(R.id.textViewOldPatente); // Encuentra el TextView
         buttonSave = findViewById(R.id.buttonSavePatente);
@@ -59,9 +59,12 @@ public class EditPatenteActivity extends AppCompatActivity {
         patente.setCaracteres(newPatenteText);
 
         try{
-            patenteService.updateById(patente);
+            patenteService.updatePatente(patente);
         } catch (PatenteRepetidaException e){
-            Toast.makeText(this, "La patente ya existe", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+            return;
+        } catch (IllegalArgumentException e){
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
             return;
         }
 

@@ -37,7 +37,11 @@ dependencies {
     implementation(libs.activity)
     implementation(libs.constraintlayout)
     implementation(libs.recyclerview)
-    implementation(libs.play.services.location)  // Agrega esta línea
+    implementation(libs.play.services.location)
+
+    implementation(libs.room.runtime)
+    annotationProcessor(libs.room.compiler) // Para Java
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)

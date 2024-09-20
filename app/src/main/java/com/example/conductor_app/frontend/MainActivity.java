@@ -14,7 +14,7 @@ import com.example.myapplication.R;
 
 public class MainActivity extends AppCompatActivity {
 
-    private CoordsManager coordsManager;
+    CoordsManager coordsManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        coordsManager = new CoordsManager(this);
         coordsManager.handlePermissionResult(requestCode, permissions, grantResults);
     }
 

@@ -29,7 +29,7 @@ public class CRUD_Patentes_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.crud_patentes_layout);
 
-        patenteService = new PatenteService(this, "myDB");
+        patenteService = new PatenteService(this);
         editTextNewPatente = findViewById(R.id.editTextNewPatente);
         Button buttonAddPatente = findViewById(R.id.buttonAddPatente);
         listViewPatentes = findViewById(R.id.listViewPatentes);
@@ -51,7 +51,7 @@ public class CRUD_Patentes_Activity extends AppCompatActivity {
 
     public void actualizarListaDePatentes() {
         // Actualiza la lista de patentes en el frontend
-        List<Patente> patentes = patenteService.findAll();
+        List<Patente> patentes = patenteService.getAllPatentes();
         adapter.clear(); // Limpiar el adaptador antes de agregar nuevos datos
         adapter.addAll(patentes); // Agregar todas las patentes al adaptador
         adapter.notifyDataSetChanged(); // Notificar al adaptador de los cambios
@@ -64,9 +64,13 @@ public class CRUD_Patentes_Activity extends AppCompatActivity {
             patente.setCaracteres(patenteTexto);
 
             try{
-                patenteService.save(patente);
+                patenteService.savePatente(patente);
             } catch (PatenteRepetidaException e){
-                Toast.makeText(this, "La patente ya existe", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                return;
+            } catch (IllegalArgumentException e){
+                Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                return;
             }
 
             editTextNewPatente.setText("");

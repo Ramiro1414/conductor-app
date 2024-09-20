@@ -22,7 +22,7 @@ public class PatenteAdapter extends ArrayAdapter<Patente> {
     public PatenteAdapter(Context context, List<Patente> patentes) {
         super(context, 0, patentes);
         this.context = context;
-        this.patenteService = new PatenteService(context, "myDB");
+        this.patenteService = new PatenteService(context);
     }
 
     @Override
@@ -41,7 +41,7 @@ public class PatenteAdapter extends ArrayAdapter<Patente> {
 
         buttonDelete.setOnClickListener(v -> {
             // Elimina la patente de la base de datos
-            patenteService.deleteById(patente.getId());
+            patenteService.deletePatente(patente.getId());
             // Elimina la patente de la lista actual en el frontend
             remove(patente);
             // Actualiza el adaptador
