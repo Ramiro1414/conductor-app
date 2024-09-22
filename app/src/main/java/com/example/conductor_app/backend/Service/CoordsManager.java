@@ -7,6 +7,7 @@ import android.widget.Toast;
 
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+
 /*
     CoordsManager es una clase que maneja tanto la verificación de permisos como la obtención de la ubicación.
     Se utiliza para separar estas responsabilidades del MainActivity y tener un código más organizado.
@@ -17,9 +18,10 @@ public class CoordsManager {
     private final Activity activity;
     private final CoordsService coordsService;
 
-    public CoordsManager(Activity activity) {
+    // Modificar el constructor para permitir la inyección de CoordsService
+    public CoordsManager(Activity activity, CoordsService coordsService) {
         this.activity = activity;
-        this.coordsService = new CoordsService(activity);
+        this.coordsService = coordsService != null ? coordsService : new CoordsService(activity, null);
     }
 
     public void requestCoordinates() {

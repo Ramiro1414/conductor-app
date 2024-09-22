@@ -20,6 +20,10 @@ public class PatenteService {
         patenteDao = db.patenteDao();
     }
 
+    public PatenteService(PatenteDao patenteDao) {
+        this.patenteDao = patenteDao;
+    }
+
     public List<Patente> getAllPatentes() {
         return patenteDao.findAll();
     }

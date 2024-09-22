@@ -16,7 +16,7 @@ public class Estacionamiento {
     private int id;
     private Timestamp horaInicio;
     private Timestamp horaFin;
-    private int patenteId; // Clave foránea que referencia a la tabla Patente
+    private int patenteId;
 
     public Estacionamiento() {
     }

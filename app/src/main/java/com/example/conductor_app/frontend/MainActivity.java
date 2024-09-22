@@ -10,6 +10,9 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.conductor_app.backend.Service.CoordsManager;
+import com.example.conductor_app.backend.Service.CoordsService;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 import com.example.myapplication.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -23,7 +26,9 @@ public class MainActivity extends AppCompatActivity {
 
         renderTitulo();
 
-        coordsManager = new CoordsManager(this);
+        FusedLocationProviderClient fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+        CoordsService coordsService = new CoordsService(this, fusedLocationClient);
+        coordsManager = new CoordsManager(this, coordsService);
 
         Button buttonGoToCRUD = findViewById(R.id.buttonGoToCRUD);
         Button buttonCoords = findViewById(R.id.buttonCoords);
@@ -41,11 +46,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        coordsManager = new CoordsManager(this);
         coordsManager.handlePermissionResult(requestCode, permissions, grantResults);
     }
 
-    public void renderTitulo(){
+    public void renderTitulo() {
         TextView textViewTitle = findViewById(R.id.textView3321);
         String text = "EstacionAR";
         SpannableString spannableString = new SpannableString(text);

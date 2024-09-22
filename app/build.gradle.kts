@@ -38,11 +38,13 @@ dependencies {
     implementation(libs.constraintlayout)
     implementation(libs.recyclerview)
     implementation(libs.play.services.location)
-
     implementation(libs.room.runtime)
-    annotationProcessor(libs.room.compiler) // Para Java
-
+    annotationProcessor(libs.room.compiler)
+    testImplementation(libs.robolectric)
     testImplementation(libs.junit)
+    testImplementation(libs.mockitoCore)      // Mockito core
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+    androidTestImplementation(libs.mockitoAndroid)  // Mockito Android
 }
+

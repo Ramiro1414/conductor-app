@@ -9,6 +9,9 @@ activity = "1.9.2"
 constraintlayout = "2.1.4"
 playServicesLocation = "21.3.0"
 room = "2.6.1"
+robolectric = "4.10"  # Añade la versión de Robolectric
+mockito = "5.2.0"     # Añade la versión de Mockito
+
 
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -23,6 +26,10 @@ play-services-location = { group = "com.google.android.gms", name = "play-servic
 room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
 room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
 
+# Dependencias de pruebas
+robolectric = { group = "org.robolectric", name = "robolectric", version.ref = "robolectric" }
+mockitoCore = { group = "org.mockito", name = "mockito-core", version.ref = "mockito" }
+mockitoAndroid = { group = "org.mockito", name = "mockito-android", version.ref = "mockito" }
+
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
-
