@@ -1,9 +1,9 @@
 package com.example.conductor_app.backend.httpServices;
 
-public class ApiResponse {
+public class DataPackage {
     private int status;
     private String message;
-    private String data;
+    private Object data;
 
     public int getStatus() {
         return status;
@@ -21,7 +21,7 @@ public class ApiResponse {
         this.message = message;
     }
 
-    public String getData() {
+    public Object getData() {
         return data;
     }
 

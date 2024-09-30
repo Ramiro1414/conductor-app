@@ -33,6 +33,7 @@ public class PatenteService {
     }
 
     public Patente getPatenteByCaracteres(String caracteres) {
+        caracteres = formatear(caracteres);
         return patenteDao.findByCaracteres(caracteres);
     }
 
