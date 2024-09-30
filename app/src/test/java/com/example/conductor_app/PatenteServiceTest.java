@@ -1,7 +1,5 @@
 package com.example.conductor_app;
 
-import android.app.Activity;
-import android.content.Context;
 import com.example.conductor_app.backend.Repository.PatenteDao;
 import com.example.conductor_app.backend.Service.PatenteRepetidaException;
 import com.example.conductor_app.backend.Service.PatenteService;
@@ -9,7 +7,6 @@ import com.example.conductor_app.backend.modelo.Patente;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 
@@ -77,7 +74,7 @@ public class PatenteServiceTest {
     @Test(expected = IllegalArgumentException.class)
     public void testSavePatente_whenFormatoInvalido() throws Exception {
         Patente patente = new Patente();
-        patente.setCaracteres("INVALID"); // Formato inválido
+        patente.setCaracteres("INVALIDA"); // Formato inválido
 
         patenteService.savePatente(patente); // Debería lanzar IllegalArgumentException
     }

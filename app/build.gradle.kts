@@ -40,11 +40,16 @@ dependencies {
     implementation(libs.play.services.location)
     implementation(libs.room.runtime)
     annotationProcessor(libs.room.compiler)
+
+    // Retrofit y Gson Converter
+    implementation(libs.retrofit)
+    implementation(libs.gson.converter)
+
+    // Dependencias de pruebas
     testImplementation(libs.robolectric)
     testImplementation(libs.junit)
-    testImplementation(libs.mockitoCore)      // Mockito core
+    testImplementation(libs.mockitoCore)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
-    androidTestImplementation(libs.mockitoAndroid)  // Mockito Android
+    androidTestImplementation(libs.mockitoAndroid)
 }
-
