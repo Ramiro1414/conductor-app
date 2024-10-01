@@ -12,8 +12,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class PruebaObtenerDatos {
     private static final String BASE_URL = "http://if012estm.fi.mdn.unp.edu.ar:28003/";
-    private ApiServicePrueba apiService;
-    private Context context;
+    private final ApiServicePrueba apiService;
+    private final Context context;
 
     public PruebaObtenerDatos(Context context) {
         this.context = context;
@@ -39,6 +39,7 @@ public class PruebaObtenerDatos {
             @Override
             public void onFailure(Call<DataPackage> call, Throwable t) {
                 Log.e("DataError", "Fallo en la solicitud: " + t.getMessage());
+                Toast.makeText(context, "Error al recibir registro: " + t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
     }

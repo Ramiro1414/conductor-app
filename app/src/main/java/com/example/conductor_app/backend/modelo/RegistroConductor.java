@@ -15,10 +15,17 @@ public class RegistroConductor {
     public RegistroConductor(){}
 
     public RegistroConductor(String patente, Timestamp horaInicio, Timestamp horaFin) {
-        id = 0;
         this.patente = patente;
         this.horaInicio = horaInicio.getTime();
         this.horaFin = horaFin.getTime();
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getPatente() {

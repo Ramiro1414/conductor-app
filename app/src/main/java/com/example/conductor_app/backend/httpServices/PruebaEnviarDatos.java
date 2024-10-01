@@ -43,6 +43,7 @@ public class PruebaEnviarDatos {
         Timestamp horaFin = new Timestamp(calendar.getTimeInMillis());
 
         RegistroConductor registroConductor = new RegistroConductor(patenteCaracteres, horaInicio, horaFin);
+        registroConductor.setId(0);
 
         // Envia el objeto a través de Retrofit
         apiService.registrarDatos(registroConductor).enqueue(new Callback<DataPackage>() {
@@ -57,6 +58,7 @@ public class PruebaEnviarDatos {
             @Override
             public void onFailure(Call<DataPackage> call, Throwable t) {
                 Log.e("DataError", "Fallo en la solicitud: " + t.getMessage());
+                Toast.makeText(context, "Error al enviar registro: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
