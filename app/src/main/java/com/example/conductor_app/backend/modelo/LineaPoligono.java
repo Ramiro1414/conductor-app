@@ -4,21 +4,7 @@ import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "linea_poligono",
-        foreignKeys = {
-        @ForeignKey(entity = Poligono.class,
-                parentColumns = "id",
-                childColumns = "poligonoId",
-                onDelete = ForeignKey.CASCADE),
-        @ForeignKey(entity = Punto.class,
-                parentColumns = "id",
-                childColumns = "puntoInicioId",
-                onDelete = ForeignKey.CASCADE),
-        @ForeignKey(entity = Punto.class,
-                parentColumns = "id",
-                childColumns = "puntoFinId",
-                onDelete = ForeignKey.CASCADE)
-})
+@Entity(tableName = "linea_poligono")
 public class LineaPoligono {
     @PrimaryKey(autoGenerate = true)
     private int id;

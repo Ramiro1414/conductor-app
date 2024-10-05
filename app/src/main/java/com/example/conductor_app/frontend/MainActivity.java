@@ -8,7 +8,6 @@ import android.text.style.ForegroundColorSpan;
 import android.widget.Button;
 import android.widget.TextView;
 
-
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.conductor_app.backend.Service.CoordsManager;
 import com.example.conductor_app.backend.Service.CoordsService;
@@ -37,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         Button buttonCoords = findViewById(R.id.buttonCoords);
         Button buttonPruebaData = findViewById(R.id.buttonPruebaData);
         Button buttonPruebaSendData = findViewById(R.id.buttonPruebaSendData);
+        Button buttonGoToEstacionamiento = findViewById(R.id.buttonGoToEstacionar);
 
         buttonGoToCRUD.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, CRUD_Patentes_Activity.class);
@@ -55,6 +55,11 @@ public class MainActivity extends AppCompatActivity {
         buttonPruebaSendData.setOnClickListener(v -> {
             PruebaEnviarDatos dataSender = new PruebaEnviarDatos(this);
             dataSender.enviarRegistroConductor();
+        });
+
+        buttonGoToEstacionamiento.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, RegistrarEstacionamientoActivity.class);
+            startActivity(intent);
         });
     }
 

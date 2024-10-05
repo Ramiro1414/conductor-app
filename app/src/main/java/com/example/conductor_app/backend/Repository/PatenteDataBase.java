@@ -5,7 +5,7 @@ import androidx.room.RoomDatabase;
 
 import com.example.conductor_app.backend.modelo.Patente;
 
-@Database(entities = {Patente.class}, version = 1)
+@Database(entities = {Patente.class}, version = 3)
 public abstract class PatenteDataBase extends RoomDatabase {
 
     public abstract PatenteDao patenteDao();

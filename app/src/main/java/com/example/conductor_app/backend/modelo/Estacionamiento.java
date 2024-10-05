@@ -1,27 +1,20 @@
 package com.example.conductor_app.backend.modelo;
 
 import androidx.room.Entity;
-import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
-import java.sql.Timestamp;
 
-@Entity(tableName = "estacionamiento",
-        foreignKeys = @ForeignKey(
-        entity = Patente.class,
-        parentColumns = "id",
-        childColumns = "patenteId",
-        onDelete = ForeignKey.CASCADE))
+@Entity(tableName = "estacionamiento")
 public class Estacionamiento {
     @PrimaryKey(autoGenerate = true)
     private int id;
-    private Timestamp horaInicio;
-    private Timestamp horaFin;
+    private Long horaInicio;
+    private Long horaFin;
     private int patenteId;
 
     public Estacionamiento() {
     }
 
-    public Estacionamiento(int id, Timestamp horaInicio, Timestamp horaFin, int patenteId) {
+    public Estacionamiento(int id, Long horaInicio, Long horaFin, int patenteId) {
         this.id = id;
         this.horaInicio = horaInicio;
         this.horaFin = horaFin;
@@ -36,19 +29,19 @@ public class Estacionamiento {
         this.id = id;
     }
 
-    public Timestamp getHoraInicio() {
+    public Long getHoraInicio() {
         return horaInicio;
     }
 
-    public void setHoraInicio(Timestamp horaInicio) {
+    public void setHoraInicio(Long horaInicio) {
         this.horaInicio = horaInicio;
     }
 
-    public Timestamp getHoraFin() {
+    public Long getHoraFin() {
         return horaFin;
     }
 
-    public void setHoraFin(Timestamp horaFin) {
+    public void setHoraFin(Long horaFin) {
         this.horaFin = horaFin;
     }
 

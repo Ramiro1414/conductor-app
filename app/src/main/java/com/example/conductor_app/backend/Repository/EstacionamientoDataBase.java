@@ -7,7 +7,7 @@ import androidx.room.TypeConverters;
 import com.example.conductor_app.backend.modelo.Estacionamiento;
 import com.example.conductor_app.backend.modelo.Patente;
 
-@Database(entities = {Estacionamiento.class, Patente.class}, version = 1)
+@Database(entities = {Estacionamiento.class, Patente.class}, version = 12)
 @TypeConverters({Converter.class})
 public abstract class EstacionamientoDataBase extends RoomDatabase {
 

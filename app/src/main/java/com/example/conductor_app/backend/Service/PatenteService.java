@@ -16,7 +16,7 @@ public class PatenteService {
     private PatenteDao patenteDao;
 
     public PatenteService(Context context) {
-        PatenteDataBase db = Room.databaseBuilder(context, PatenteDataBase.class, "patentes").allowMainThreadQueries().build();
+        PatenteDataBase db = Room.databaseBuilder(context, PatenteDataBase.class, "patentes").fallbackToDestructiveMigration().allowMainThreadQueries().build();
         patenteDao = db.patenteDao();
     }
 
