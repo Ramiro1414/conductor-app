@@ -9,16 +9,16 @@ public class Estacionamiento {
     private int id;
     private Long horaInicio;
     private Long horaFin;
-    private int patenteId;
+    private String patenteCaracteres;
 
     public Estacionamiento() {
     }
 
-    public Estacionamiento(int id, Long horaInicio, Long horaFin, int patenteId) {
+    public Estacionamiento(int id, Long horaInicio, Long horaFin, String patenteCaracteres) {
         this.id = id;
         this.horaInicio = horaInicio;
         this.horaFin = horaFin;
-        this.patenteId = patenteId;
+        this.patenteCaracteres = patenteCaracteres;
     }
 
     public int getId() {
@@ -45,12 +45,12 @@ public class Estacionamiento {
         this.horaFin = horaFin;
     }
 
-    public int getPatenteId() {
-        return patenteId;
+    public String getPatenteCaracteres() {
+        return patenteCaracteres;
     }
 
-    public void setPatenteId(int patenteId) {
-        this.patenteId = patenteId;
+    public void setPatenteCaracteres(String patenteCaracteres) {
+        this.patenteCaracteres = patenteCaracteres;
     }
 
     @Override
@@ -59,7 +59,7 @@ public class Estacionamiento {
                 "id=" + id +
                 ", horaInicio=" + horaInicio +
                 ", horaFin=" + horaFin +
-                ", patenteId=" + patenteId +
+                ", patente=" + patenteCaracteres +
                 '}';
     }
 }

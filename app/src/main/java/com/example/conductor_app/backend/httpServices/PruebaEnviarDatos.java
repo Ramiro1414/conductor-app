@@ -34,7 +34,7 @@ public class PruebaEnviarDatos {
 
     public void enviarRegistroConductor() {
         PatenteService patenteService = new PatenteService(context);
-        String patenteCaracteres = patenteService.getPatenteByCaracteres("OVL777").getCaracteres();
+        String patenteCaracteres = patenteService.getAllPatentes().get(0).getCaracteres();
 
         // Obtener la hora local del dispositivo
         Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
@@ -45,22 +45,24 @@ public class PruebaEnviarDatos {
         RegistroConductor registroConductor = new RegistroConductor(patenteCaracteres, horaInicio, horaFin);
         registroConductor.setId(0);
 
-        // Envia el objeto a través de Retrofit
-        apiService.registrarDatos(registroConductor).enqueue(new Callback<DataPackage>() {
+        // Llama al servicio y maneja la respuesta
+        apiService.registrarDatos(registroConductor).enqueue(new Callback<DataPackage<Object>>() {
             @Override
-            public void onResponse(Call<DataPackage> call, Response<DataPackage> response) {
+            public void onResponse(Call<DataPackage<Object>> call, Response<DataPackage<Object>> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     Toast.makeText(context, "Registro enviado exitosamente:\n" + response.body().getData().toString(), Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(context, "Error al enviar registro: " + response.code(), Toast.LENGTH_SHORT).show();
                 }
             }
+
             @Override
-            public void onFailure(Call<DataPackage> call, Throwable t) {
+            public void onFailure(Call<DataPackage<Object>> call, Throwable t) {
                 Log.e("DataError", "Fallo en la solicitud: " + t.getMessage());
                 Toast.makeText(context, "Error al enviar registro: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
+
 
 }

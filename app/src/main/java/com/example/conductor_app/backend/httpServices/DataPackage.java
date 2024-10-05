@@ -1,9 +1,9 @@
 package com.example.conductor_app.backend.httpServices;
 
-public class DataPackage {
+public class DataPackage<T> {
     private int status;
     private String message;
-    private Object data;
+    private T data;  // Cambia Object por T
 
     public int getStatus() {
         return status;
@@ -21,12 +21,11 @@ public class DataPackage {
         this.message = message;
     }
 
-    public Object getData() {
+    public T getData() {
         return data;
     }
 
-    public void setData(String data) {
+    public void setData(T data) {
         this.data = data;
     }
 }
-

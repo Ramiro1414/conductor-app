@@ -7,6 +7,9 @@ import androidx.room.PrimaryKey;
 public class PatronPatente {
     @PrimaryKey(autoGenerate = true)
     private int id;
+
+    private String nombre;
+
     private String expresionRegularPatente;
 
     public PatronPatente() {
@@ -31,6 +34,14 @@ public class PatronPatente {
 
     public void setExpresionRegularPatente(String expresionRegularPatente) {
         this.expresionRegularPatente = expresionRegularPatente;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     @Override

@@ -42,12 +42,12 @@ public class EstacionamientoAdapter {
         // Establecer el fondo blanco y el texto negro
         row.setBackgroundColor(android.graphics.Color.WHITE);
 
-        TextView id = new TextView(context);
-        id.setText(String.valueOf(estacionamiento.getId()));
-        id.setPadding(16, 16, 16, 16);
-        id.setGravity(android.view.Gravity.CENTER);
-        id.setTextColor(android.graphics.Color.BLACK);
-        row.addView(id);
+        TextView patente = new TextView(context);
+        patente.setText(estacionamiento.getPatenteCaracteres());
+        patente.setPadding(16, 16, 16, 16);
+        patente.setGravity(android.view.Gravity.CENTER);
+        patente.setTextColor(android.graphics.Color.BLACK);
+        row.addView(patente);
 
         TextView horaInicio = new TextView(context);
         horaInicio.setText(sdf.format(estacionamiento.getHoraInicio()));
@@ -69,7 +69,7 @@ public class EstacionamientoAdapter {
         // Añadir separador
         View separator = new View(context);
         separator.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, 1));
-        separator.setBackgroundColor(android.graphics.Color.LTGRAY); // Cambia el color si es necesario
+        separator.setBackgroundColor(android.graphics.Color.LTGRAY);
         tablaEstacionamientos.addView(separator); // Añadir separador después de la fila
 
         return row;

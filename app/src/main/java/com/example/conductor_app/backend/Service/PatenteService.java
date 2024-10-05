@@ -1,11 +1,16 @@
 package com.example.conductor_app.backend.Service;
 
 import android.content.Context;
+import android.util.Log;
+
 import androidx.room.Room;
 
 import com.example.conductor_app.backend.Repository.PatenteDao;
 import com.example.conductor_app.backend.Repository.PatenteDataBase;
 import com.example.conductor_app.backend.modelo.Patente;
+import com.example.conductor_app.backend.modelo.PatronPatente;
+
+import java.util.ArrayList;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
@@ -14,8 +19,10 @@ import java.util.List;
 public class PatenteService {
 
     private PatenteDao patenteDao;
+    private Context context;
 
     public PatenteService(Context context) {
+        this.context = context;
         PatenteDataBase db = Room.databaseBuilder(context, PatenteDataBase.class, "patentes").fallbackToDestructiveMigration().allowMainThreadQueries().build();
         patenteDao = db.patenteDao();
     }
@@ -64,27 +71,32 @@ public class PatenteService {
         }
     }
 
-    private boolean formatoInvalido(String caracteres) {
-        // Definir las expresiones regulares
-        String regex1 = "^[A-Z]{3}\\d{3}$";             // 3 letras seguidas de 3 números
-        String regex2 = "^[A-Z]{2}\\d{3}[A-Z]{2}$";     // 2 letras seguidas de 3 números y 2 letras
+    private boolean formatoValido(String caracteres) {
+        List<String> regexList = new ArrayList<>();
 
-        // Compilar las expresiones regulares
-        Pattern pattern1 = Pattern.compile(regex1);
-        Pattern pattern2 = Pattern.compile(regex2);
+        PatronesPatentesService patronesPatentesService = new PatronesPatentesService(this.context);
+        for(PatronPatente p : patronesPatentesService.findAll()) {
+            regexList.add(p.getExpresionRegularPatente());
+            Log.d("AAAAA", p.toString());
+        }
 
-        // Crear un matcher para ambas expresiones
-        Matcher matcher1 = pattern1.matcher(caracteres);
-        Matcher matcher2 = pattern2.matcher(caracteres);
+        Log.d("AAAAAAAAAAAAAAAAAAAAAA", patronesPatentesService.findAll().size() + "");
 
-        return (!matcher1.matches() && !matcher2.matches());
+        for(String regex : regexList){
+            Pattern pattern = Pattern.compile(regex);
+            Matcher matcher = pattern.matcher(caracteres);
+            if (matcher.matches()) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private String formatear(String caracteres) {
         caracteres = caracteres.replace(" ", "").toUpperCase();
 
         // Comprobar si el formato es válido
-        if (formatoInvalido(caracteres)) {
+        if (!(formatoValido(caracteres))) {
             throw new IllegalArgumentException("La patente no cumple con el formato requerido");
         }
 

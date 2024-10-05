@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         Button buttonPruebaData = findViewById(R.id.buttonPruebaData);
         Button buttonPruebaSendData = findViewById(R.id.buttonPruebaSendData);
         Button buttonGoToEstacionamiento = findViewById(R.id.buttonGoToEstacionar);
+        Button buttonObtenerPatrones = findViewById(R.id.buttonObtenerPatrones);
 
         buttonGoToCRUD.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, CRUD_Patentes_Activity.class);
@@ -60,6 +61,11 @@ public class MainActivity extends AppCompatActivity {
         buttonGoToEstacionamiento.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, RegistrarEstacionamientoActivity.class);
             startActivity(intent);
+        });
+
+        buttonObtenerPatrones.setOnClickListener(v -> {
+            PruebaObtenerDatos dataGetter = new PruebaObtenerDatos(this);
+            dataGetter.obtenerPatronesDePatentes();
         });
     }
 

@@ -4,6 +4,11 @@ import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.example.conductor_app.backend.Service.PatronesPatentesService;
+import com.example.conductor_app.backend.modelo.PatronPatente;
+
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -26,10 +31,10 @@ public class PruebaObtenerDatos {
     }
 
     public void obtenerDatosDelServidor() {
-        Call<DataPackage> call = apiService.obtenerDatos();
-        call.enqueue(new Callback<DataPackage>() {
+        Call<DataPackage<Object>> call = apiService.obtenerDatos();
+        call.enqueue(new Callback<DataPackage<Object>>() {
             @Override
-            public void onResponse(Call<DataPackage> call, Response<DataPackage> response) {
+            public void onResponse(Call<DataPackage<Object>>  call, Response<DataPackage<Object>> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     Toast.makeText(context, "Registro recibido exitosamente:\n" + response.body().getData().toString(), Toast.LENGTH_SHORT).show();
                 } else {
@@ -37,11 +42,44 @@ public class PruebaObtenerDatos {
                 }
             }
             @Override
-            public void onFailure(Call<DataPackage> call, Throwable t) {
+            public void onFailure(Call<DataPackage<Object>> call, Throwable t) {
                 Log.e("DataError", "Fallo en la solicitud: " + t.getMessage());
                 Toast.makeText(context, "Error al recibir registro: " + t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    public void obtenerPatronesDePatentes() {
+        Call<DataPackage<List<PatronPatente>>> call = apiService.obtenerPatrones();
+        call.enqueue(new Callback<DataPackage<List<PatronPatente>>>() {
+            @Override
+            public void onResponse(Call<DataPackage<List<PatronPatente>>> call, Response<DataPackage<List<PatronPatente>>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    PatronesPatentesService patronesPatentesService = new PatronesPatentesService(context);
+
+                    List<PatronPatente> patronesNuevos = response.body().getData();
+                    patronesPatentesService.deleteAll();
+                    for(PatronPatente patronPatente : patronesNuevos) {
+                        PatronPatente nuevoPatronPatente = new PatronPatente();
+                        nuevoPatronPatente.setExpresionRegularPatente(patronPatente.getExpresionRegularPatente());
+                        patronesPatentesService.save(nuevoPatronPatente);
+                    }
+
+                    Toast.makeText(context, "Registros recibidos exitosamente", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(context, "Error al recibir registro: " + response.code(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<DataPackage<List<PatronPatente>>> call, Throwable t) {
+                Log.e("DataError", "Fallo en la solicitud: " + t.getMessage());
+                Toast.makeText(context, "Error al recibir registro: " + t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+        PatronesPatentesService patronesPatentesService = new PatronesPatentesService(context);
+        for(PatronPatente p : patronesPatentesService.findAll())
+            Log.d("AAAAA", p.toString());
     }
 }
 
