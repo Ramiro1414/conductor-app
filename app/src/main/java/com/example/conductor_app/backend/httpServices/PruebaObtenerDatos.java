@@ -66,6 +66,7 @@ public class PruebaObtenerDatos {
                     }
 
                     Toast.makeText(context, "Registros recibidos exitosamente", Toast.LENGTH_SHORT).show();
+
                 } else {
                     Toast.makeText(context, "Error al recibir registro: " + response.code(), Toast.LENGTH_SHORT).show();
                 }
@@ -77,9 +78,6 @@ public class PruebaObtenerDatos {
                 Toast.makeText(context, "Error al recibir registro: " + t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
-        PatronesPatentesService patronesPatentesService = new PatronesPatentesService(context);
-        for(PatronPatente p : patronesPatentesService.findAll())
-            Log.d("AAAAA", p.toString());
     }
 }
 

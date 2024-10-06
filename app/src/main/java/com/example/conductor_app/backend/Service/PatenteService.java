@@ -72,30 +72,28 @@ public class PatenteService {
     }
 
     private boolean formatoValido(String caracteres) {
+        PatronesPatentesService patronesPatentesService = new PatronesPatentesService(context);
+
         List<String> regexList = new ArrayList<>();
 
-        PatronesPatentesService patronesPatentesService = new PatronesPatentesService(this.context);
-        for(PatronPatente p : patronesPatentesService.findAll()) {
+        for (PatronPatente p : patronesPatentesService.findAll()) {
             regexList.add(p.getExpresionRegularPatente());
-            Log.d("AAAAA", p.toString());
         }
 
-        Log.d("AAAAAAAAAAAAAAAAAAAAAA", patronesPatentesService.findAll().size() + "");
-
-        for(String regex : regexList){
+        for (String regex : regexList){
             Pattern pattern = Pattern.compile(regex);
             Matcher matcher = pattern.matcher(caracteres);
             if (matcher.matches()) {
                 return true;
             }
         }
+
         return false;
     }
 
     private String formatear(String caracteres) {
         caracteres = caracteres.replace(" ", "").toUpperCase();
 
-        // Comprobar si el formato es válido
         if (!(formatoValido(caracteres))) {
             throw new IllegalArgumentException("La patente no cumple con el formato requerido");
         }

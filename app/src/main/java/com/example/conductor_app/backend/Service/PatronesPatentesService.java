@@ -14,8 +14,8 @@ public class PatronesPatentesService {
     private PatronPatenteDao patronPatenteDao;
 
     public PatronesPatentesService(Context context) {
-        PatronPatenteDataBase db = Room.databaseBuilder(context, PatronPatenteDataBase.class, "patentes").fallbackToDestructiveMigration().allowMainThreadQueries().build();
-        patronPatenteDao = db.patronPatenteDao();
+        PatronPatenteDataBase db = Room.databaseBuilder(context, PatronPatenteDataBase.class, "patron_patente").fallbackToDestructiveMigration().allowMainThreadQueries().build();
+        this.patronPatenteDao = db.patronPatenteDao();
     }
 
     public PatronesPatentesService(PatronPatenteDao patronPatenteDao) {
@@ -23,30 +23,30 @@ public class PatronesPatentesService {
     }
 
     public List<PatronPatente> findAll() {
-        return patronPatenteDao.findAll();
+        return this.patronPatenteDao.findAll();
     }
 
     public PatronPatente findById(int id) {
-        return patronPatenteDao.findById(id);
+        return this.patronPatenteDao.findById(id);
     }
 
     public void save(PatronPatente patronPatente) {
-        patronPatenteDao.insert(patronPatente);
+        this.patronPatenteDao.insert(patronPatente);
     }
 
     public void update(PatronPatente patronPatente) throws PatenteRepetidaException {
-        patronPatenteDao.update(patronPatente);
+        this.patronPatenteDao.update(patronPatente);
     }
 
     public void delete(int id) {
-        PatronPatente patronPatente = patronPatenteDao.findById(id);
+        PatronPatente patronPatente = this.patronPatenteDao.findById(id);
         if (patronPatente != null) {
-            patronPatenteDao.delete(patronPatente);
+            this.patronPatenteDao.delete(patronPatente);
         }
     }
 
     public void deleteAll(){
-        patronPatenteDao.deleteAll();
+        this.patronPatenteDao.deleteAll();
     }
 
 }

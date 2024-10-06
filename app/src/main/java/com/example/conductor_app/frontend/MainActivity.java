@@ -5,12 +5,14 @@ import android.os.Bundle;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.conductor_app.backend.Service.CoordsManager;
 import com.example.conductor_app.backend.Service.CoordsService;
+import com.example.conductor_app.backend.Service.PatronesPatentesService;
 import com.example.conductor_app.backend.httpServices.PruebaEnviarDatos;
 import com.example.conductor_app.backend.httpServices.PruebaObtenerDatos;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -40,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         Button buttonObtenerPatrones = findViewById(R.id.buttonObtenerPatrones);
 
         buttonGoToCRUD.setOnClickListener(v -> {
+            Log.d("ASSSSSSS", new PatronesPatentesService(this).findAll().size() + "");
             Intent intent = new Intent(MainActivity.this, CRUD_Patentes_Activity.class);
             startActivity(intent);
         });
