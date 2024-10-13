@@ -17,7 +17,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class PruebaObtenerDatos {
     private static final String BASE_URL = "http://if012estm.fi.mdn.unp.edu.ar:28003/";
-    private final ApiServicePrueba apiService;
+    private final ApiService apiService;
     private final Context context;
 
     public PruebaObtenerDatos(Context context) {
@@ -27,27 +27,27 @@ public class PruebaObtenerDatos {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        apiService = retrofit.create(ApiServicePrueba.class);
+        apiService = retrofit.create(ApiService.class);
     }
 
-    public void obtenerDatosDelServidor() {
-        Call<DataPackage<Object>> call = apiService.obtenerDatos();
-        call.enqueue(new Callback<DataPackage<Object>>() {
-            @Override
-            public void onResponse(Call<DataPackage<Object>>  call, Response<DataPackage<Object>> response) {
-                if (response.isSuccessful() && response.body() != null) {
-                    Toast.makeText(context, "Registro recibido exitosamente:\n" + response.body().getData().toString(), Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(context, "Error al recibir registro: " + response.code(), Toast.LENGTH_SHORT).show();
-                }
-            }
-            @Override
-            public void onFailure(Call<DataPackage<Object>> call, Throwable t) {
-                Log.e("DataError", "Fallo en la solicitud: " + t.getMessage());
-                Toast.makeText(context, "Error al recibir registro: " + t.getMessage(), Toast.LENGTH_LONG).show();
-            }
-        });
-    }
+//    public void obtenerDatosDelServidor() {
+//        Call<DataPackage<Object>> call = apiService.obtenerDatos();
+//        call.enqueue(new Callback<DataPackage<Object>>() {
+//            @Override
+//            public void onResponse(Call<DataPackage<Object>>  call, Response<DataPackage<Object>> response) {
+//                if (response.isSuccessful() && response.body() != null) {
+//                    Toast.makeText(context, "Registro recibido exitosamente:\n" + response.body().getData().toString(), Toast.LENGTH_SHORT).show();
+//                } else {
+//                    Toast.makeText(context, "Error al recibir registro: " + response.code(), Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//            @Override
+//            public void onFailure(Call<DataPackage<Object>> call, Throwable t) {
+//                Log.e("DataError", "Fallo en la solicitud: " + t.getMessage());
+//                Toast.makeText(context, "Error al recibir registro: " + t.getMessage(), Toast.LENGTH_LONG).show();
+//            }
+//        });
+//    }
 
     public void obtenerPatronesDePatentes() {
         Call<DataPackage<List<PatronPatente>>> call = apiService.obtenerPatrones();
@@ -65,7 +65,7 @@ public class PruebaObtenerDatos {
                         patronesPatentesService.save(nuevoPatronPatente);
                     }
 
-                    Toast.makeText(context, "Registros recibidos exitosamente", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Registros recibidos exitosamente. Registros obtenidos: " + patronesNuevos.size(), Toast.LENGTH_LONG).show();
 
                 } else {
                     Toast.makeText(context, "Error al recibir registro: " + response.code(), Toast.LENGTH_SHORT).show();

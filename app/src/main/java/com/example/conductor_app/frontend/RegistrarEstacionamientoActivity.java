@@ -1,5 +1,6 @@
 package com.example.conductor_app.frontend;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TableLayout;
@@ -29,14 +30,13 @@ public class RegistrarEstacionamientoActivity extends AppCompatActivity {
 
         this.estacionamientoService = new EstacionamientoService(this);
         Button inicioEstacionamiento = findViewById(R.id.inicarEstacionamiento);
-        Button finalizarEstacionamiento = findViewById(R.id.finalizarEstacionamiento);
         TableLayout tablaEstacionamientos = findViewById(R.id.tablaEstacionamientos);
 
         // Inicializar el adaptador y cargar la tabla al inicio
         estacionamientoAdapter = new EstacionamientoAdapter(this, estacionamientoService.findAll(), tablaEstacionamientos);
         estacionamientoAdapter.updateTable();
 
-        updateButtonState(inicioEstacionamiento, finalizarEstacionamiento);
+        updateButtonState(inicioEstacionamiento);
 
         inicioEstacionamiento.setOnClickListener(v -> {
             showPatenteDialog((dialog, which) -> {
@@ -51,21 +51,11 @@ public class RegistrarEstacionamientoActivity extends AppCompatActivity {
                 nuevoEstacionamiento.setHoraInicio(System.currentTimeMillis());
                 estacionamientoService.save(nuevoEstacionamiento);
 
-                refreshTableAndButtons(inicioEstacionamiento, finalizarEstacionamiento);
+                refreshTableAndButtons(inicioEstacionamiento);
                 Toast.makeText(this, "Estacionamiento iniciado para la patente: " + patenteSeleccionada, Toast.LENGTH_LONG).show();
             });
         });
 
-        finalizarEstacionamiento.setOnClickListener(v -> {
-            Estacionamiento nuevoEstacionamiento = estacionamientoService.findUncompleted();
-            if (nuevoEstacionamiento == null)
-                return;
-
-            nuevoEstacionamiento.setHoraFin(System.currentTimeMillis());
-            estacionamientoService.update(nuevoEstacionamiento);
-
-            refreshTableAndButtons(inicioEstacionamiento, finalizarEstacionamiento);
-        });
     }
 
     private void showPatenteDialog(DialogInterface.OnClickListener patenteSeleccionadaListener) {
@@ -80,26 +70,27 @@ public class RegistrarEstacionamientoActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Seleccionar Patente")
                 .setItems(patenteCaracteresArray, patenteSeleccionadaListener)
-                .setNegativeButton("Cancelar", (dialog, id) -> dialog.dismiss());
+                .setNegativeButton("Cancelar", (dialog, id) -> dialog.dismiss())
+                .setNeutralButton("Crear nueva patente", (dialog, id) -> {
+                    // Abrir la actividad para crear una nueva patente
+                    Intent intent = new Intent(RegistrarEstacionamientoActivity.this, CRUD_Patentes_Activity.class);
+                    startActivity(intent);
+                });
 
         builder.create().show();
     }
 
-    private void refreshTableAndButtons(Button inicioEstacionamiento, Button finalizarEstacionamiento) {
+
+    private void refreshTableAndButtons(Button inicioEstacionamiento) {
         // Actualizar la lista de estacionamientos y la tabla
         estacionamientoAdapter = new EstacionamientoAdapter(this, estacionamientoService.findAll(), findViewById(R.id.tablaEstacionamientos));
         estacionamientoAdapter.updateTable();
 
-        updateButtonState(inicioEstacionamiento, finalizarEstacionamiento);
+        updateButtonState(inicioEstacionamiento);
     }
 
-    private void updateButtonState(Button inicioEstacionamiento, Button finalizarEstacionamiento) {
-        if (estacionamientoService.findUncompleted() == null) {
-            inicioEstacionamiento.setEnabled(true);
-            finalizarEstacionamiento.setEnabled(false);
-        } else {
-            inicioEstacionamiento.setEnabled(false);
-            finalizarEstacionamiento.setEnabled(true);
-        }
+    private void updateButtonState(Button inicioEstacionamiento) {
+        inicioEstacionamiento.setEnabled(true);
     }
+
 }

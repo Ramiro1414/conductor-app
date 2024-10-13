@@ -1,16 +1,15 @@
 package com.example.conductor_app.backend.modelo;
 
 import androidx.room.Entity;
-import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "linea_poligono")
 public class LineaPoligono {
     @PrimaryKey(autoGenerate = true)
     private int id;
-    private int poligonoId;  // Clave foránea que referencia a la tabla Poligono
-    private int puntoInicioId;  // Clave foránea que referencia a la tabla Punto
-    private int puntoFinId;  // Clave foránea que referencia a la tabla Punto
+    private int poligonoId;
+    private int puntoInicioId;
+    private int puntoFinId;
 
     public LineaPoligono() {
     }

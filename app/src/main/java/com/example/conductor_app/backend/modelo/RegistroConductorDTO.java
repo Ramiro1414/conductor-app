@@ -2,7 +2,7 @@ package com.example.conductor_app.backend.modelo;
 
 import java.sql.Timestamp;
 
-public class RegistroConductor {
+public class RegistroConductorDTO {
 
     private int id;
 
@@ -12,9 +12,9 @@ public class RegistroConductor {
 
     private Long horaFin;
 
-    public RegistroConductor(){}
+    public RegistroConductorDTO(){}
 
-    public RegistroConductor(String patente, Timestamp horaInicio, Timestamp horaFin) {
+    public RegistroConductorDTO(String patente, Timestamp horaInicio, Timestamp horaFin) {
         this.patente = patente;
         this.horaInicio = horaInicio.getTime();
         this.horaFin = horaFin.getTime();

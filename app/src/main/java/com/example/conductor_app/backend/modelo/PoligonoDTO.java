@@ -1,22 +1,22 @@
 package com.example.conductor_app.backend.modelo;
 
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
+import java.util.Collection;
 
-@Entity(tableName = "poligono")
-public class Poligono {
-    @PrimaryKey(autoGenerate = true)
+public class PoligonoDTO {
+
     private int id;
+
     private double precio;
+
     private String nombre;
 
-    public Poligono() {
-    }
+    private Collection<LineaPoligonoDTO> lineasPoligono;
 
-    public Poligono(int id, double precio, String nombre) {
+    public PoligonoDTO(int id, double precio, String nombre, Collection<LineaPoligonoDTO> lineasPoligono) {
         this.id = id;
         this.precio = precio;
         this.nombre = nombre;
+        this.lineasPoligono = lineasPoligono;
     }
 
     public int getId() {
@@ -43,11 +43,11 @@ public class Poligono {
         this.nombre = nombre;
     }
 
-    @Override
-    public String toString() {
-        return "Poligono{" +
-                "id=" + id +
-                ", precio=" + precio +
-                '}';
+    public Collection<LineaPoligonoDTO> getLineasPoligono() {
+        return lineasPoligono;
+    }
+
+    public void setLineasPoligono(Collection<LineaPoligonoDTO> lineasPoligono) {
+        this.lineasPoligono = lineasPoligono;
     }
 }

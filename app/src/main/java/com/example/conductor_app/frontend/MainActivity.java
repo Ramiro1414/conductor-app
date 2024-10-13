@@ -12,9 +12,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.conductor_app.backend.Service.CoordsManager;
 import com.example.conductor_app.backend.Service.CoordsService;
-import com.example.conductor_app.backend.Service.PatronesPatentesService;
-import com.example.conductor_app.backend.httpServices.PruebaEnviarDatos;
-import com.example.conductor_app.backend.httpServices.PruebaObtenerDatos;
+import com.example.conductor_app.backend.httpServices.ActualizacionService;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.example.myapplication.R;
@@ -36,13 +34,10 @@ public class MainActivity extends AppCompatActivity {
 
         Button buttonGoToCRUD = findViewById(R.id.buttonGoToCRUD);
         Button buttonCoords = findViewById(R.id.buttonCoords);
-        Button buttonPruebaData = findViewById(R.id.buttonPruebaData);
-        Button buttonPruebaSendData = findViewById(R.id.buttonPruebaSendData);
         Button buttonGoToEstacionamiento = findViewById(R.id.buttonGoToEstacionar);
-        Button buttonObtenerPatrones = findViewById(R.id.buttonObtenerPatrones);
+        Button buttonActualizar = findViewById(R.id.buttonActualziar);
 
         buttonGoToCRUD.setOnClickListener(v -> {
-            Log.d("ASSSSSSS", new PatronesPatentesService(this).findAll().size() + "");
             Intent intent = new Intent(MainActivity.this, CRUD_Patentes_Activity.class);
             startActivity(intent);
         });
@@ -51,24 +46,17 @@ public class MainActivity extends AppCompatActivity {
             coordsManager.requestCoordinates();
         });
 
-        buttonPruebaData.setOnClickListener(v -> {
-            PruebaObtenerDatos dataGetter = new PruebaObtenerDatos(this);
-            dataGetter.obtenerDatosDelServidor();
-        });
-
-        buttonPruebaSendData.setOnClickListener(v -> {
-            PruebaEnviarDatos dataSender = new PruebaEnviarDatos(this);
-            dataSender.enviarRegistroConductor();
-        });
-
         buttonGoToEstacionamiento.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, RegistrarEstacionamientoActivity.class);
             startActivity(intent);
         });
 
-        buttonObtenerPatrones.setOnClickListener(v -> {
-            PruebaObtenerDatos dataGetter = new PruebaObtenerDatos(this);
-            dataGetter.obtenerPatronesDePatentes();
+        buttonActualizar.setOnClickListener(v -> {
+            ActualizacionService actualizacionService = new ActualizacionService(this);
+            actualizacionService.actualizarPatronesDePatentes();
+            actualizacionService.actualizarHorariosDeEstacionamiento();
+            actualizacionService.actualizarPoligonosDeEstacionamiento();
+
         });
     }
 

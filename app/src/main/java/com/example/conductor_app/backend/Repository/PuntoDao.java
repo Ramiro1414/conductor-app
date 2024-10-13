@@ -18,8 +18,11 @@ public interface PuntoDao {
     @Query("SELECT * FROM punto WHERE id = :id")
     Punto findById(int id);
 
+    @Query("DELETE FROM punto")
+    void deleteAll();
+
     @Insert
-    void insert(Punto punto);
+    long insert(Punto punto);
 
     @Update
     void update(Punto punto);

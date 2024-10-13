@@ -5,7 +5,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.example.conductor_app.backend.Service.PatenteService;
-import com.example.conductor_app.backend.modelo.RegistroConductor;
+import com.example.conductor_app.backend.modelo.RegistroConductorDTO;
 
 import java.sql.Timestamp;
 import java.util.Calendar;
@@ -19,7 +19,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class PruebaEnviarDatos {
     private static final String BASE_URL = "http://if012estm.fi.mdn.unp.edu.ar:28003/";
-    private ApiServicePrueba apiService;
+    private ApiService apiService;
     private Context context;
 
     public PruebaEnviarDatos(Context context) {
@@ -29,7 +29,7 @@ public class PruebaEnviarDatos {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        apiService = retrofit.create(ApiServicePrueba.class);
+        apiService = retrofit.create(ApiService.class);
     }
 
     public void enviarRegistroConductor() {
@@ -42,7 +42,7 @@ public class PruebaEnviarDatos {
         calendar.add(Calendar.SECOND, 10);
         Timestamp horaFin = new Timestamp(calendar.getTimeInMillis());
 
-        RegistroConductor registroConductor = new RegistroConductor(patenteCaracteres, horaInicio, horaFin);
+        RegistroConductorDTO registroConductor = new RegistroConductorDTO(patenteCaracteres, horaInicio, horaFin);
         registroConductor.setId(0);
 
         // Llama al servicio y maneja la respuesta

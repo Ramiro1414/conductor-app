@@ -6,7 +6,7 @@ import com.example.conductor_app.backend.modelo.LineaPoligono;
 import com.example.conductor_app.backend.modelo.Poligono;
 import com.example.conductor_app.backend.modelo.Punto;
 
-@Database(entities = {LineaPoligono.class, Poligono.class, Punto.class}, version = 1)
+@Database(entities = {LineaPoligono.class, Poligono.class, Punto.class}, version = 2)
 public abstract class LineaPoligonoDataBase extends RoomDatabase {
 
     public abstract LineaPoligonoDao lineaPoligonoDao();

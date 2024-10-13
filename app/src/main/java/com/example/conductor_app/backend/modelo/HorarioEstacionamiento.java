@@ -28,10 +28,11 @@ public class HorarioEstacionamiento {
     public HorarioEstacionamiento() {
     }
 
-    public HorarioEstacionamiento(int id, Date fechaInicio, Date fechaFin, String nombre) {
-        this.id = id;
+    public HorarioEstacionamiento(Date fechaInicio, Date fechaFin, Timestamp horaInicio, Timestamp horaFin, String nombre) {
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
+        this.horaInicio = horaInicio;
+        this.horaFin = horaFin;
         this.nombre = nombre;
     }
 
