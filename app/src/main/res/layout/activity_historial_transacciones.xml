@@ -7,26 +7,15 @@
     android:padding="16dp">
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textViewTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
         android:gravity="center"
-        android:text="ESTACIONAMIENTO"
+        android:text="HISTORIAL DE TRANSACCIONES"
         android:textColor="#000000"
         android:textSize="24sp"
         android:textStyle="bold" />
-
-    <Button
-        android:id="@+id/inicarEstacionamiento"
-        android:layout_width="wrap_content"
-        android:layout_height="70dp"
-        android:layout_gravity="center"
-        android:layout_marginBottom="12dp"
-        android:background="@drawable/button_background"
-        android:padding="12dp"
-        android:text="Iniciar estacionamiento"
-        android:textColor="#FFFFFF" />
 
     <TableLayout
         android:layout_width="match_parent"
@@ -34,30 +23,41 @@
         android:background="#FFFFFF"
         android:padding="8dp">
 
-        <TableRow
-            android:id="@+id/table_header_row"> <!-- Asignar un ID a la fila de encabezado -->
+        <TableRow>
             <TextView
-                android:layout_width="10dp"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:gravity="left"
-                android:text="Patente"
+                android:gravity="center_vertical"
+                android:text="Patente\nFecha"
                 android:textColor="#000000"
-                android:textSize="18sp" />
+                android:textSize="18sp" />  <!-- Nueva columna para la patente -->
+
+            <!-- Tamaño de fuente aumentado -->
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:padding="4dp"
-                android:gravity="left"
-                android:text="Hora Inicio"
+                android:gravity="center"
+                android:text="Tiempo estacionado"
+                android:textColor="#000000"
+                android:textSize="18sp" />  <!-- Tamaño de fuente aumentado -->
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:padding="4dp"
+                android:gravity="right"
+                android:text="Saldo gastado"
                 android:textColor="#000000"
                 android:textSize="18sp" />
+
         </TableRow>
 
     </TableLayout>
-
 
     <ScrollView
         android:layout_width="match_parent"
@@ -72,12 +72,12 @@
 
             <!-- Tabla que contiene los estacionamientos -->
             <TableLayout
-                android:id="@+id/tablaEstacionamientos"
+                android:id="@+id/tablaEstacionamientosHistorial"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#FFFFFF"
                 android:stretchColumns="1">
-                <!-- Las filas se generarán dinámicamente -->
+
             </TableLayout>
         </LinearLayout>
     </ScrollView>

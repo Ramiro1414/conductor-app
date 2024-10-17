@@ -22,7 +22,7 @@ public interface PuntoDao {
     void deleteAll();
 
     @Insert
-    long insert(Punto punto);
+    void insert(Punto punto);
 
     @Update
     void update(Punto punto);

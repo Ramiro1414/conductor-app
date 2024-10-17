@@ -27,8 +27,8 @@ public class PuntoService {
         return this.puntoDao.findById(id);
     }
 
-    public int save(Punto punto) {
-        return (int) this.puntoDao.insert(punto);
+    public void save(Punto punto) {
+        this.puntoDao.insert(punto);
     }
 
     public void update(Punto punto){

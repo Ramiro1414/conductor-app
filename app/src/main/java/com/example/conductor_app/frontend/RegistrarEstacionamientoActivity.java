@@ -17,11 +17,12 @@ import com.example.conductor_app.backend.modelo.Patente;
 import com.example.myapplication.R;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class RegistrarEstacionamientoActivity extends AppCompatActivity {
 
     private EstacionamientoService estacionamientoService;
-    private EstacionamientoAdapter estacionamientoAdapter;
+    private EstacionamientoActivoAdapter estacionamientoAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,9 +33,9 @@ public class RegistrarEstacionamientoActivity extends AppCompatActivity {
         Button inicioEstacionamiento = findViewById(R.id.inicarEstacionamiento);
         TableLayout tablaEstacionamientos = findViewById(R.id.tablaEstacionamientos);
 
-        // Inicializar el adaptador y cargar la tabla al inicio
-        estacionamientoAdapter = new EstacionamientoAdapter(this, estacionamientoService.findAll(), tablaEstacionamientos);
-        estacionamientoAdapter.updateTable();
+
+        estacionamientoAdapter = new EstacionamientoActivoAdapter(this, tablaEstacionamientos);
+        estacionamientoAdapter.updateTable(estacionamientoService.findUncompleted());
 
         updateButtonState(inicioEstacionamiento);
 
@@ -80,14 +81,21 @@ public class RegistrarEstacionamientoActivity extends AppCompatActivity {
         builder.create().show();
     }
 
-
     private void refreshTableAndButtons(Button inicioEstacionamiento) {
-        // Actualizar la lista de estacionamientos y la tabla
-        estacionamientoAdapter = new EstacionamientoAdapter(this, estacionamientoService.findAll(), findViewById(R.id.tablaEstacionamientos));
-        estacionamientoAdapter.updateTable();
+        List<Estacionamiento> todosEstacionamientos = estacionamientoService.findAll();
 
+        List<Estacionamiento> estacionamientosNoFinalizados = todosEstacionamientos.stream()
+                .filter(est -> est.getHoraFin() == null)
+                .collect(Collectors.toList());
+
+        // Actualizar la tabla con solo los estacionamientos no finalizados
+        estacionamientoAdapter = new EstacionamientoActivoAdapter(this, findViewById(R.id.tablaEstacionamientos));
+        estacionamientoAdapter.updateTable(estacionamientosNoFinalizados);
+
+        // Actualizar el estado del botón
         updateButtonState(inicioEstacionamiento);
     }
+
 
     private void updateButtonState(Button inicioEstacionamiento) {
         inicioEstacionamiento.setEnabled(true);

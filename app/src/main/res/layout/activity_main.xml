@@ -68,6 +68,17 @@
         android:text="Actualizar"
         android:textColor="#FFFFFF" />
 
+    <Button
+        android:id="@+id/buttonTransacciones"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/button_background"
+        android:padding="12dp"
+        android:text="Transacciones"
+        android:textColor="#FFFFFF" />
+
     <!-- Espacio vacío para centrar los botones -->
     <Space
         android:layout_width="match_parent"

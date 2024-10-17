@@ -12,18 +12,11 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.conductor_app.backend.Service.CoordsManager;
 import com.example.conductor_app.backend.Service.CoordsService;
-import com.example.conductor_app.backend.Service.HoraInicioHoraFinService;
-import com.example.conductor_app.backend.Service.HorarioEstacionamientoService;
-import com.example.conductor_app.backend.Service.PatronesPatentesService;
-import com.example.conductor_app.backend.Service.PoligonoService;
-import com.example.conductor_app.backend.Service.PuntoService;
 import com.example.conductor_app.backend.httpServices.ActualizacionService;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.example.myapplication.R;
-
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -45,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         Button buttonCoords = findViewById(R.id.buttonCoords);
         Button buttonGoToEstacionamiento = findViewById(R.id.buttonGoToEstacionar);
         Button buttonActualizar = findViewById(R.id.buttonActualziar);
+        Button buttonTransacciones = findViewById(R.id.buttonTransacciones);
 
         buttonGoToCRUD.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, CRUD_Patentes_Activity.class);
@@ -67,6 +61,11 @@ public class MainActivity extends AppCompatActivity {
             actualizacionService.actualizarHorariosDeEstacionamiento();
 
             new DataBaseLogPrinter(this);
+        });
+
+        buttonTransacciones.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, HistorialTransaccionesActivity.class);
+            startActivity(intent);
         });
     }
 

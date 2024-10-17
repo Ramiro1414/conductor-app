@@ -14,18 +14,16 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 public interface ApiService {
-//    @GET("comunicador/actualizar")
-//    Call<DataPackage<Object>> obtenerDatos();  // Este método puede quedarse igual si no necesitas un tipo específico
-//
+
     @POST("comunicador/registrar/conductor")
-    Call<DataPackage<Object>> registrarDatos(@Body Object o);  // Cambiado para usar DataPackage<Object>
+    Call<DataPackage<Object>> registrarDatos(@Body Object o);
 
     @GET("comunicador/actualizar/patrones")
-    Call<DataPackage<List<PatronPatente>>> obtenerPatrones();  // Cambiado para usar DataPackage<List<PatronPatente>>
+    Call<DataPackage<List<PatronPatente>>> obtenerPatrones();
 
     @GET("comunicador/actualizar/poligonos")
-    Call<DataPackage<List<PoligonoDTO>>> obtenerPoligonos();  // Cambiado para usar DataPackage<List<PatronPatente>>
+    Call<DataPackage<List<PoligonoDTO>>> obtenerPoligonos();
 
     @GET("comunicador/actualizar/horarios")
-    Call<DataPackage<List<HorarioEstacionamientoDTO>>> obtenerHorarios();  // Cambiado para usar DataPackage<List<PatronPatente>>
+    Call<DataPackage<List<HorarioEstacionamientoDTO>>> obtenerHorarios();
 }

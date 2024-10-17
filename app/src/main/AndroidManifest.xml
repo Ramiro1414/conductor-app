@@ -42,12 +42,22 @@
         <activity
             android:name="com.example.conductor_app.frontend.EditPatenteActivity"
             android:exported="true"
-            android:screenOrientation="portrait" /> <!-- Restringir a retrato -->
+            android:screenOrientation="portrait" />
 
         <activity
             android:name="com.example.conductor_app.frontend.RegistrarEstacionamientoActivity"
             android:exported="true"
-            android:screenOrientation="portrait" /> <!-- Restringir a retrato -->
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.example.conductor_app.frontend.HistorialTransaccionesActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.example.conductor_app.frontend.DetalleEstacionamientoActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
 
     </application>
 

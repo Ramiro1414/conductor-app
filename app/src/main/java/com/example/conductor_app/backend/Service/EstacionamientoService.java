@@ -8,6 +8,7 @@ import com.example.conductor_app.backend.Repository.EstacionamientoDao;
 import com.example.conductor_app.backend.Repository.EstacionamientoDataBase;
 import com.example.conductor_app.backend.modelo.Estacionamiento;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class EstacionamientoService {
@@ -34,12 +35,13 @@ public class EstacionamientoService {
         this.estacionamientoDao.insert(estacionamiento);
     }
 
-    public Estacionamiento findUncompleted (){
+    public List<Estacionamiento> findUncompleted (){
+        List<Estacionamiento> result = new ArrayList<>();
         for(Estacionamiento e : this.estacionamientoDao.findAll())
             if(e.getHoraFin() == null)
-                return e;
+                result.add(e);
 
-        return null;
+        return result;
     }
 
     public void update(Estacionamiento estacionamiento){
