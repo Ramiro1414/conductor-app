@@ -5,7 +5,7 @@ import androidx.room.RoomDatabase;
 
 import com.example.conductor_app.backend.modelo.Punto;
 
-@Database(entities = {Punto.class}, version = 1)
+@Database(entities = {Punto.class}, version = 2)
 public abstract class PuntoDataBase extends RoomDatabase {
 
     public abstract PuntoDao puntoDao();

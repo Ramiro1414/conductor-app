@@ -10,13 +10,13 @@ public class PoligonoDTO {
 
     private String nombre;
 
-    private Collection<LineaPoligonoDTO> lineasPoligono;
+    private Collection<PuntoDTO> puntos;
 
-    public PoligonoDTO(int id, double precio, String nombre, Collection<LineaPoligonoDTO> lineasPoligono) {
+    public PoligonoDTO(int id, double precio, String nombre, Collection<PuntoDTO> puntos) {
         this.id = id;
         this.precio = precio;
         this.nombre = nombre;
-        this.lineasPoligono = lineasPoligono;
+        this.puntos = puntos;
     }
 
     public int getId() {
@@ -43,11 +43,11 @@ public class PoligonoDTO {
         this.nombre = nombre;
     }
 
-    public Collection<LineaPoligonoDTO> getLineasPoligono() {
-        return lineasPoligono;
+    public Collection<PuntoDTO> getPuntos() {
+        return puntos;
     }
 
-    public void setLineasPoligono(Collection<LineaPoligonoDTO> lineasPoligono) {
-        this.lineasPoligono = lineasPoligono;
+    public void setPuntos(Collection<PuntoDTO> puntos) {
+        this.puntos = puntos;
     }
 }

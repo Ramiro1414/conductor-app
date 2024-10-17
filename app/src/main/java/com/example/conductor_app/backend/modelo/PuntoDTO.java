@@ -8,6 +8,9 @@ public class PuntoDTO {
 
     private double longitud;
 
+    public PuntoDTO() {
+    }
+
     public PuntoDTO(int id, double latitud, double longitud) {
         this.id = id;
         this.latitud = latitud;

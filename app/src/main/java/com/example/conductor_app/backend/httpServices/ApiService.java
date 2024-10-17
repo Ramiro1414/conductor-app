@@ -1,6 +1,7 @@
 package com.example.conductor_app.backend.httpServices;
 
 import com.example.conductor_app.backend.modelo.HorarioEstacionamiento;
+import com.example.conductor_app.backend.modelo.HorarioEstacionamientoDTO;
 import com.example.conductor_app.backend.modelo.PatronPatente;
 import com.example.conductor_app.backend.modelo.Poligono;
 import com.example.conductor_app.backend.modelo.PoligonoDTO;
@@ -26,5 +27,5 @@ public interface ApiService {
     Call<DataPackage<List<PoligonoDTO>>> obtenerPoligonos();  // Cambiado para usar DataPackage<List<PatronPatente>>
 
     @GET("comunicador/actualizar/horarios")
-    Call<DataPackage<List<HorarioEstacionamiento>>> obtenerHorarios();  // Cambiado para usar DataPackage<List<PatronPatente>>
+    Call<DataPackage<List<HorarioEstacionamientoDTO>>> obtenerHorarios();  // Cambiado para usar DataPackage<List<PatronPatente>>
 }

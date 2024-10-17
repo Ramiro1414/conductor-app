@@ -6,8 +6,7 @@ import androidx.room.TypeConverters;
 
 import com.example.conductor_app.backend.modelo.HorarioEstacionamiento;
 
-@Database(entities = {HorarioEstacionamiento.class}, version = 1)
-@TypeConverters({Converter.class})
+@Database(entities = {HorarioEstacionamiento.class}, version = 2)
 public abstract class HorarioEstacionamientoDataBase extends RoomDatabase {
 
     public abstract HorarioEstacionamientoDao horarioEstacionamientoDao();

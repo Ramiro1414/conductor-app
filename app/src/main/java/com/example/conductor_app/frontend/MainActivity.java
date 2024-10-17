@@ -12,14 +12,23 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.conductor_app.backend.Service.CoordsManager;
 import com.example.conductor_app.backend.Service.CoordsService;
+import com.example.conductor_app.backend.Service.HoraInicioHoraFinService;
+import com.example.conductor_app.backend.Service.HorarioEstacionamientoService;
+import com.example.conductor_app.backend.Service.PatronesPatentesService;
+import com.example.conductor_app.backend.Service.PoligonoService;
+import com.example.conductor_app.backend.Service.PuntoService;
 import com.example.conductor_app.backend.httpServices.ActualizacionService;
+
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.example.myapplication.R;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
-    CoordsManager coordsManager;
+    private CoordsManager coordsManager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,12 +62,15 @@ public class MainActivity extends AppCompatActivity {
 
         buttonActualizar.setOnClickListener(v -> {
             ActualizacionService actualizacionService = new ActualizacionService(this);
+            actualizacionService.actualizarPoligonosDeEstacionamiento();
             actualizacionService.actualizarPatronesDePatentes();
             actualizacionService.actualizarHorariosDeEstacionamiento();
-            actualizacionService.actualizarPoligonosDeEstacionamiento();
 
+            new DataBaseLogPrinter(this);
         });
     }
+
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
